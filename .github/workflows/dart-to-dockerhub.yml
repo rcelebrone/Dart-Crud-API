@@ -15,19 +15,41 @@ jobs:
 
     - name: Docker build
       run: docker build . -f Dockerfile -t rcelebrone/dart-server-api
-    
-    - name: Docker push
+      
+    - name: Build and push Docker images
       # You may pin to the exact commit or the version.
-      # uses: actions-hub/docker@726e89023248c002cf9aadfc8b8364687a3ed25f
-      uses: actions-hub/docker@v1.0.0
+      # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
+      uses: docker/build-push-action@v1.1.1
       with:
-        # Docker image (if not the same as repo)
-        NAME: rcelebrone/dart-crud-api
-        # Docker tag (if want to specify tag)
-        TAG: latest
-        # Docker username
-        DOCKER_USERNAME: ${DOCKER_USERNAME}
-        # Docker password
-        DOCKER_PASSWORD: ${DOCKER_PASSWORD}
-        # Docker registry url
-        DOCKER_REGISTRY_URL: ${DOCKER_REGISTRY_URL}
+        # Username used to log in to a Docker registry. If not set then no login will occur
+        username: ${DOCKER_USERNAME}
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        password: ${DOCKER_PASSWORD}
+        # Server address of Docker registry. If not set then will default to Docker Hub
+        # registry: # optional
+        # Docker repository to tag the image with
+        repository: rcelebrone
+        # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+        #tags: # optional
+        # Automatically tags the built image with the git reference as per the readme
+        #tag_with_ref: # optional
+        # Automatically tags the built image with the git short SHA as per the readme
+        #tag_with_sha: # optional
+        # Path to the build context
+        #path: # optional, default is .
+        # Path to the Dockerfile (Default is '{path}/Dockerfile')
+        #dockerfile: # optional
+        # Sets the target stage to build
+        #target: # optional
+        # Always attempt to pull a newer version of the image
+        #always_pull: # optional
+        # Comma-delimited list of build-time variables
+        #build_args: # optional
+        # Comma-delimited list of images to consider as cache sources
+        #cache_froms: # optional
+        # Comma-delimited list of labels to add to the built image
+        #labels: # optional
+        # Adds labels with git repository information to the built image
+        #add_git_labels: # optional
+        # Whether to push the image
+        #push: # optional, default is true
