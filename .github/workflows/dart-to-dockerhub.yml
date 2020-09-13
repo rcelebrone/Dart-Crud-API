@@ -28,5 +28,5 @@ jobs:
         # Dockerhub secret
         secrets: ${DOCKER_SECRET}
         # Docker repository to tag the image with
-        repository: rcelebrone/dart-crud-api
+        target: rcelebrone/dart-crud-api
         
