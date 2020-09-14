@@ -7,27 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-
-  build:
+  docker_build_push:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    #- name: Docker build
-      #run: docker build . -f Dockerfile -t rcelebrone/dart-server-api
-      
-    - name: Build and push Docker images
-      # You may pin to the exact commit or the version.
-      # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
-      uses: docker/build-push-action@v1.1.1
-      with:
-        # Username used to log in to a Docker registry. If not set then no login will occur
-        username: ${{secrets.DOCKER_USERNAME}}
-        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-        password: ${{secrets.DOCKER_SECRET}}
-        # Dockerhub secret
-        # secrets: ${DOCKER_SECRET}
-        # Docker repository to tag the image with
-        tags: rcelebrone/dart-crud-api:latest
-        push: true
-        
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1.1.1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: rcelebrone/dart-crud-api
+          tag_with_ref: true
