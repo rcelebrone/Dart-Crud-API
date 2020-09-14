@@ -3,7 +3,7 @@ import 'package:dart_crud_api/dart_crud_api.dart';
 Future main() async {
   final app = Application<DartCrudApiChannel>()
       ..options.configurationFilePath = "config.yaml"
-      ..options.port = 8000;
+      ..options.port = 80;
 
   final count = Platform.numberOfProcessors ~/ 2;
   await app.start(numberOfInstances: count > 0 ? count : 1);

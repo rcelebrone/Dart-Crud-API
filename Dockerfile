@@ -7,5 +7,5 @@ RUN pub get
 ADD . /app
 RUN pub get --offline
 
-EXPOSE 8000
+EXPOSE 80
 ENTRYPOINT ["/usr/bin/dart", "bin/main.dart"]
